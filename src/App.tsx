@@ -1,11 +1,10 @@
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
   ArrowDownRight,
   ArrowRight,
   Asterisk,
   Bot,
   Check,
-  ChevronRight,
   Clock3,
   Database,
   Mail,
@@ -16,7 +15,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const services = [
   {
@@ -47,16 +46,19 @@ const steps = [
     id: "01",
     title: "Find the friction",
     copy: "We map where time, leads and useful data are leaking from your current process.",
+    output: "Opportunity map",
   },
   {
     id: "02",
     title: "Build the system",
     copy: "We design and implement the automation around the tools your team already uses.",
+    output: "Working automation",
   },
   {
     id: "03",
     title: "Prove and improve",
     copy: "We test the real workflow, train your team and refine it until the outcome is reliable.",
+    output: "Trained team",
   },
 ];
 
@@ -132,7 +134,18 @@ function EngineVisual() {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
   const reduceMotion = useReducedMotion();
+
+  const openForm = (event: React.MouseEvent<HTMLElement>) => {
+    lastTriggerRef.current = event.currentTarget;
+    setMenuOpen(false);
+    setFormOpen(true);
+  };
+
+  const closeForm = () => setFormOpen(false);
 
   useEffect(() => {
     const close = () => setMenuOpen(false);
@@ -146,6 +159,44 @@ function App() {
       window.removeEventListener("keydown", closeOnEscape);
     };
   }, []);
+
+  useEffect(() => {
+    if (!formOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const dialog = dialogRef.current;
+    const focusable = dialog?.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled])',
+    );
+    focusable?.[0]?.focus();
+
+    const handleDialogKeys = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeForm();
+        return;
+      }
+      if (event.key !== "Tab" || !focusable?.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleDialogKeys);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleDialogKeys);
+      lastTriggerRef.current?.focus();
+    };
+  }, [formOpen]);
 
   const reveal = {
     initial: reduceMotion ? false : { opacity: 0, y: 26 },
@@ -164,9 +215,9 @@ function App() {
           <a href="#process">How it works</a>
           <a href="#about">About</a>
         </nav>
-        <a className="nav-cta" href="mailto:mark@mhautomation.co.uk?subject=Free%20automation%20review">
+        <button className="nav-cta" type="button" onClick={openForm}>
           Book a free review <ArrowRight aria-hidden="true" />
-        </a>
+        </button>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation">
           {menuOpen ? <X /> : <Menu />}
         </button>
@@ -175,7 +226,7 @@ function App() {
             <a href="#services" onClick={() => setMenuOpen(false)}>What we automate</a>
             <a href="#process" onClick={() => setMenuOpen(false)}>How it works</a>
             <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-            <a className="button button--primary" href="mailto:mark@mhautomation.co.uk?subject=Free%20automation%20review">Book a free review</a>
+            <button className="button button--primary" type="button" onClick={openForm}>Book a free review</button>
           </nav>
         )}
       </header>
@@ -195,9 +246,9 @@ function App() {
                 MH Automation builds practical AI systems for small and mid-sized service businesses—so leads move faster, admin disappears and your team gets hours back every week.
               </p>
               <div className="hero__actions">
-                <a className="button button--primary button--hero" href="mailto:mark@mhautomation.co.uk?subject=Free%20automation%20review">
+                <button className="button button--primary button--hero" type="button" onClick={openForm}>
                   Book your free automation review <ArrowRight aria-hidden="true" />
-                </a>
+                </button>
                 <a className="text-link" href="#services">See what we automate <ArrowDownRight aria-hidden="true" /></a>
               </div>
               <ul className="hero__proof" aria-label="Service promises">
@@ -258,7 +309,7 @@ function App() {
             <p className="section-index section-index--light">THE REAL PRODUCT</p>
             <h2>More time for the work<br />only humans can do.</h2>
             <p>Automation is not about adding more software. It is about creating a calmer, faster business where nothing useful gets lost between tools.</p>
-            <a className="button button--light" href="mailto:mark@mhautomation.co.uk?subject=Tell%20me%20what%20I%20could%20automate">Tell me what I could automate <ArrowRight aria-hidden="true" /></a>
+            <button className="button button--light" type="button" onClick={openForm}>Tell me what I could automate <ArrowRight aria-hidden="true" /></button>
           </motion.div>
           <div className="proof-panel__numbers">
             <motion.div {...reveal}><strong>24/7</strong><span>routine work can keep moving</span></motion.div>
@@ -276,12 +327,14 @@ function App() {
             <p>No mysterious black box. You will know what we are building, why it matters and how success will be measured.</p>
           </motion.div>
           <div className="process-list">
-            {steps.map((step, index) => (
+            {steps.map((step) => (
               <motion.article className="process-step" key={step.id} {...reveal}>
                 <span className="process-step__number">{step.id}</span>
                 <div><h3>{step.title}</h3><p>{step.copy}</p></div>
-                <div className="process-step__signal" aria-hidden="true"><span style={{ width: `${42 + index * 25}%` }} /></div>
-                <ChevronRight aria-hidden="true" />
+                <div className="process-step__output">
+                  <span>Deliverable</span>
+                  <strong>{step.output}</strong>
+                </div>
               </motion.article>
             ))}
           </div>
@@ -307,9 +360,9 @@ function App() {
             <p className="eyebrow eyebrow--center"><span /> One useful conversation. No hard sell.</p>
             <h2>What could your business<br /><em>stop doing manually?</em></h2>
             <p>Book a free automation review. We will identify the strongest opportunities, explain what is realistic and give you a clear next step.</p>
-            <a className="button button--primary button--hero" href="mailto:mark@mhautomation.co.uk?subject=Free%20automation%20review&body=Hi%20Mark%2C%0A%0AI%27d%20like%20to%20book%20a%20free%20automation%20review.%0A%0AThe%20main%20process%20I%27d%20like%20to%20improve%20is%3A%0A">
+            <button className="button button--primary button--hero" type="button" onClick={openForm}>
               Book your free automation review <Mail aria-hidden="true" />
-            </a>
+            </button>
             <a className="final-cta__email" href="mailto:mark@mhautomation.co.uk">mark@mhautomation.co.uk</a>
           </motion.div>
         </section>
@@ -320,6 +373,72 @@ function App() {
         <p>AI automation systems for growing service businesses.</p>
         <div><a href="#top">Back to top</a><span>© {new Date().getFullYear()} MH Automation</span></div>
       </footer>
+
+      <AnimatePresence>
+        {formOpen && (
+          <motion.div
+            className="enquiry-overlay"
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.28 }}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) closeForm();
+            }}
+          >
+            <motion.div
+              ref={dialogRef}
+              className="enquiry-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="enquiry-title"
+              initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.985 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.99 }}
+              transition={{ duration: reduceMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="enquiry-dialog__visual" aria-hidden="true">
+                <div className="enquiry-dialog__brand"><BrandMark light /></div>
+                <div className="enquiry-dialog__orbit"><i /><i /><i /></div>
+                <div className="enquiry-dialog__promise">
+                  <span>One useful conversation.</span>
+                  <strong>No hard sell.</strong>
+                </div>
+              </div>
+              <div className="enquiry-dialog__form-wrap">
+                <button className="enquiry-dialog__close" type="button" onClick={closeForm} aria-label="Close enquiry form">
+                  <X aria-hidden="true" />
+                </button>
+                <p className="section-index">START A CONVERSATION</p>
+                <h2 id="enquiry-title">Tell me what is<br /><em>slowing you down.</em></h2>
+                <p className="enquiry-dialog__intro">A few details are enough. Online enquiries will open soon; until then, you can contact Mark directly using the email link below.</p>
+                <form className="enquiry-form" onSubmit={(event) => event.preventDefault()}>
+                  <div className="enquiry-form__row">
+                    <label>
+                      <span>Your name</span>
+                      <input type="text" name="name" autoComplete="name" placeholder="Jane Smith" required />
+                    </label>
+                    <label>
+                      <span>Email address</span>
+                      <input type="email" name="email" autoComplete="email" placeholder="jane@company.com" required />
+                    </label>
+                  </div>
+                  <label>
+                    <span>What would you like to improve?</span>
+                    <textarea name="message" rows={5} placeholder="Tell me about the repetitive work, bottleneck or opportunity you have in mind…" required />
+                  </label>
+                  <button className="button enquiry-form__submit" type="submit" disabled aria-describedby="submit-note">
+                    Online enquiries opening soon <Clock3 aria-hidden="true" />
+                  </button>
+                  <p id="submit-note" className="enquiry-form__note">
+                    Prefer not to wait? Email <a href="mailto:mark@mhautomation.co.uk">mark@mhautomation.co.uk</a>
+                  </p>
+                </form>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
