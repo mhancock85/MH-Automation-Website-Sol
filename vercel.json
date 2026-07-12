@@ -1,5 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "name": "mh-automation-website-sol",
   "framework": "vite"
 }
