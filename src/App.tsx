@@ -293,7 +293,8 @@ function App() {
               const Icon = service.icon;
               return (
                 <motion.article className="service-card" key={service.number} {...reveal} transition={{ ...reveal.transition, delay: index * 0.08 }}>
-                  <div className="service-card__top"><span>{service.number}</span><Icon aria-hidden="true" /></div>
+                  <div className="service-card__top"><span className="service-card__rule" /><Icon aria-hidden="true" /></div>
+                  <span className="service-card__number" aria-hidden="true">{service.number}</span>
                   <h3>{service.title}</h3>
                   <p>{service.copy}</p>
                   <div className="service-card__outcome"><Zap aria-hidden="true" /> {service.outcome}</div>
