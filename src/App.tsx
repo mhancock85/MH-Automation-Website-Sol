@@ -241,7 +241,7 @@ function App() {
               transition={{ duration: reduceMotion ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <p className="eyebrow"><span /> AI automation for growing service businesses</p>
-              <h1>Grow the business.<br /><em>Lose the busywork.</em></h1>
+              <h1>What could your business<br /><em>stop doing manually?</em></h1>
               <p className="hero__lead">
                 MH Automation builds practical AI systems for small and mid-sized service businesses—so leads move faster, admin disappears and your team gets hours back every week.
               </p>
@@ -359,7 +359,7 @@ function App() {
           <div className="final-cta__orbit" aria-hidden="true"><i /><i /><i /></div>
           <motion.div className="final-cta__inner" {...reveal}>
             <p className="eyebrow eyebrow--center"><span /> One useful conversation. No hard sell.</p>
-            <h2>What could your business<br /><em>stop doing manually?</em></h2>
+            <h2>Start with the work<br /><em>slowing your business down.</em></h2>
             <p>Book a free automation review. We will identify the strongest opportunities, explain what is realistic and give you a clear next step.</p>
             <button className="button button--primary button--hero" type="button" onClick={openForm}>
               Book your free automation review <Mail aria-hidden="true" />

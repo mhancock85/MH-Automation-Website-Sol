@@ -59,8 +59,8 @@ button { color: inherit; font: inherit; }
 .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 25px; color: var(--ink-soft); font: 500 11px/1.3 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
 .eyebrow span { width: 7px; height: 7px; border-radius: 50%; background: var(--aqua-ink); box-shadow: 0 0 0 5px rgba(29,229,211,.17); }
 .hero h1, .section h2, .statement__text, .proof-panel h2, .final-cta h2 { font-family: var(--font-display); letter-spacing: -.06em; }
-.hero h1 { max-width: 850px; margin: 0; font-size: clamp(3.5rem, 6vw, 7.1rem); line-height: .91; font-weight: 600; }
-.hero h1 em, .final-cta h2 em { display: inline-block; color: var(--aqua-deep); font-style: normal; }
+.hero h1 { max-width: 850px; margin: 0; font-size: clamp(3.5rem, 6vw, 7.1rem); line-height: .95; font-weight: 600; }
+.hero h1 em, .final-cta h2 em { display: inline-block; padding-bottom: .08em; margin-bottom: -.08em; color: var(--aqua-deep); font-style: normal; }
 .hero__lead { max-width: 685px; margin: 32px 0 0; color: var(--ink-soft); font-size: clamp(1.05rem, 1.4vw, 1.28rem); line-height: 1.65; }
 .hero__actions { display: flex; align-items: center; gap: 28px; margin-top: 38px; }
 .button { min-height: 50px; padding: 0 23px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; border-radius: 999px; font-size: 13px; font-weight: 700; transition: transform .25s ease, box-shadow .25s ease, background .25s ease; cursor: pointer; }
@@ -166,7 +166,7 @@ button { color: inherit; font: inherit; }
 .final-cta { min-height: 820px; padding: 120px 4vw; position: relative; display: grid; place-items: center; text-align: center; background: #eef0ea; overflow: hidden; }
 .final-cta__inner { position: relative; z-index: 2; max-width: 1050px; }
 .eyebrow--center { justify-content: center; }
-.final-cta h2 { margin: 28px 0; font-size: clamp(3.2rem, 6vw, 7.5rem); line-height: .92; font-weight: 600; }
+.final-cta h2 { margin: 28px 0; font-size: clamp(3.2rem, 6vw, 7.5rem); line-height: .96; font-weight: 600; }
 .final-cta__inner > p:not(.eyebrow) { max-width: 710px; margin: 0 auto 36px; color: var(--ink-soft); font-size: 17px; line-height: 1.7; }
 .final-cta__email { display: block; width: fit-content; margin: 22px auto 0; color: var(--ink-soft); font: 400 11px var(--font-mono); border-bottom: 1px solid var(--line); }
 .final-cta__orbit { position: absolute; width: min(85vw, 960px); aspect-ratio: 1; border: 1px solid rgba(10,185,172,.15); border-radius: 50%; }
