@@ -27,11 +27,13 @@ npm run build
 
 ## Typography guardrail
 
-The display typeface is Syne. At the large sizes used for headings, line
-heights below the font's full glyph height can cut off descenders, most
-noticeably the bottom of a lowercase `g`.
+The display typeface is Outfit. It replaced Syne because Syne's lowercase `g`
+has a deliberately truncated-looking shape that appeared to be clipped. Extra
+line height does not correct that glyph design.
 
-- Keep large Syne headings at a line height of at least `1.02`.
+- Do not restore Syne as the display font without reviewing words containing a
+  lowercase `g` at the actual heading sizes.
+- Keep large Outfit headings at a line height of at least `1.02`.
 - Do not restore the earlier values between `0.93` and `0.98` for display
   headings.
 - After changing heading size, line height, overflow, or containers, visually
