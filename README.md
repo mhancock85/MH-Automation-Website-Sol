@@ -51,6 +51,28 @@ clipping defect, and the distinctive appearance has been intentionally kept.
 - Preserve the explanatory comment beside the display-heading rules in
   `src/index.css` so the same issue is not misdiagnosed again.
 
+## Planned enquiry workflow
+
+The enquiry form is currently disabled and does not submit or store data. The
+agreed future workflow is:
+
+1. Submit the website form to a secure Vercel server function.
+2. Validate the request and reject spam using a honeypot and rate limiting.
+3. Add the enquiry to a Google Sheet used as the initial lead register.
+4. Email the enquiry details immediately to `mark@mhautomation.co.uk`.
+5. Show a confirmation screen with an optional Google Calendar appointment
+   booking link.
+6. Optionally send the prospective client a short acknowledgement email.
+
+The Google Sheet should track the submission date, name, email, company,
+enquiry, source, status, next action, and notes. Do not submit directly from
+the browser to Google Sheets; keep credentials and validation inside the
+server function. Add a short privacy notice before enabling submissions.
+
+Google Calendar should let the prospect choose from available appointment
+slots after submitting. The form should not create an event automatically.
+This workflow is documented only and has not yet been implemented.
+
 ## Deployment
 
 The project is configured for Vercel through `vercel.json`. Production assets
