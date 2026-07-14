@@ -21,23 +21,23 @@ const services = [
   {
     number: "01",
     icon: Workflow,
-    title: "Automate the work between your tools",
-    copy: "Connect your CRM, inbox, spreadsheets and finance systems so information moves without copy-and-paste admin.",
-    outcome: "Less admin. Fewer errors.",
+    title: "Remove repetitive finance work",
+    copy: "Automate reporting, reconciliations and data processing with clear checks, review points and human control built in.",
+    outcome: "Faster finance. Stronger control.",
   },
   {
     number: "02",
     icon: MessageSquareText,
-    title: "Turn enquiries into qualified conversations",
-    copy: "Respond, qualify and route new leads automatically—then put the right meetings directly into your calendar.",
-    outcome: "Faster replies. Better leads.",
+    title: "Fix the work taking too long",
+    copy: "Streamline invoicing, quote writing, client onboarding and the repetitive admin that slows your team down.",
+    outcome: "Less waiting. More capacity.",
   },
   {
     number: "03",
     icon: Bot,
-    title: "Give your team an AI operations layer",
-    copy: "Build practical AI assistants for reporting, research, document handling and the repetitive tasks slowing your team down.",
-    outcome: "More capacity. No extra headcount.",
+    title: "Build tools your business can use",
+    copy: "Create practical pricing tools, dashboards, client portals and focused websites that turn your knowledge into a useful digital asset.",
+    outcome: "Useful tools. Built around you.",
   },
 ];
 
@@ -45,7 +45,7 @@ const steps = [
   {
     id: "01",
     title: "Find the friction",
-    copy: "We map where time, leads and useful data are leaking from your current process.",
+    copy: "We map where time, money and useful information are getting stuck in the way you work today.",
     output: "Opportunity map",
   },
   {
@@ -114,13 +114,13 @@ function EngineVisual() {
       </div>
 
       <div className="engine-node engine-node--crm">
-        <Database aria-hidden="true" /><span>CRM</span><small>updated</small>
+        <Database aria-hidden="true" /><span>Finance</span><small>reconciled</small>
       </div>
       <div className="engine-node engine-node--leads">
-        <MessageSquareText aria-hidden="true" /><span>Leads</span><small>qualified</small>
+        <MessageSquareText aria-hidden="true" /><span>Quotes</span><small>created</small>
       </div>
       <div className="engine-node engine-node--report">
-        <Sparkles aria-hidden="true" /><span>Reports</span><small>generated</small>
+        <Sparkles aria-hidden="true" /><span>Reports</span><small>produced</small>
       </div>
       <div className="engine-node engine-node--time">
         <Clock3 aria-hidden="true" /><span>Time</span><small>reclaimed</small>
@@ -240,10 +240,10 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: reduceMotion ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="eyebrow"><span /> AI automation for growing service businesses</p>
+              <p className="eyebrow"><span /> Controlled AI automation for finance teams and growing businesses</p>
               <h1>What could your business<br /><em>stop doing manually?</em></h1>
               <p className="hero__lead">
-                MH Automation builds practical AI systems for small and mid-sized service businesses—so leads move faster, admin disappears and your team gets hours back every week.
+                MH Automation helps growing finance teams eliminate repetitive reporting, reconciliation and data-processing work. We also automate the operational tasks slowing smaller businesses down, and build practical digital tools that create new capacity.
               </p>
               <div className="hero__actions">
                 <button className="button button--primary button--hero" type="button" onClick={openForm}>
@@ -252,9 +252,9 @@ function App() {
                 <a className="text-link" href="#services">See what we automate <ArrowDownRight aria-hidden="true" /></a>
               </div>
               <ul className="hero__proof" aria-label="Service promises">
-                <li><Check aria-hidden="true" /> Built around your business</li>
+                <li><Check aria-hidden="true" /> Controls and human review built in</li>
                 <li><Check aria-hidden="true" /> Works with your existing tools</li>
-                <li><Check aria-hidden="true" /> Clear, human support</li>
+                <li><Check aria-hidden="true" /> Clear, accountable delivery</li>
               </ul>
             </motion.div>
             <motion.div
@@ -267,7 +267,7 @@ function App() {
             </motion.div>
           </div>
           <div className="hero__rail" aria-hidden="true">
-            <span>LEADS</span><i /><span>ADMIN</span><i /><span>REPORTING</span><i /><span>OPERATIONS</span><i /><span>CAPACITY</span>
+            <span>FINANCE</span><i /><span>REPORTING</span><i /><span>QUOTES</span><i /><span>TOOLS</span><i /><span>CAPACITY</span>
           </div>
         </section>
 
@@ -275,7 +275,7 @@ function App() {
           <motion.div className="statement__inner" {...reveal}>
             <p className="section-index">01 / THE OPPORTUNITY</p>
             <p className="statement__text">
-              Your best people should not spend their week <span>moving information between systems.</span> We turn repetitive work into a dependable digital operation.
+              Your best people should not spend their week <span>reconciling spreadsheets, rewriting information or chasing routine work.</span> We turn repetitive processes into dependable digital operations.
             </p>
           </motion.div>
         </section>
@@ -286,7 +286,7 @@ function App() {
               <p className="section-index">02 / WHAT WE AUTOMATE</p>
               <h2>Systems that remove work,<br />not people.</h2>
             </div>
-            <p>Focused automation for the parts of a growing service business that cost time, create delays and depend too much on memory.</p>
+            <p>Start with finance or another costly bottleneck. We build controlled automation and useful tools around the way your business actually works.</p>
           </motion.div>
           <div className="service-grid">
             {services.map((service, index) => {
@@ -309,7 +309,7 @@ function App() {
           <motion.div className="proof-panel__copy" {...reveal}>
             <p className="section-index section-index--light">THE REAL PRODUCT</p>
             <h2>More time for the work<br />only humans can do.</h2>
-            <p>Automation is not about adding more software. It is about creating a calmer, faster business where nothing useful gets lost between tools.</p>
+            <p>Automation is not about adding more software. It is about creating a calmer, faster business where routine work moves reliably and people keep control.</p>
             <button className="button button--light" type="button" onClick={openForm}>Tell me what I could automate <ArrowRight aria-hidden="true" /></button>
           </motion.div>
           <div className="proof-panel__numbers">
@@ -349,8 +349,8 @@ function App() {
           <motion.div className="about__copy" {...reveal}>
             <p className="section-index">04 / WHY MH AUTOMATION</p>
             <h2>Senior attention.<br />Built for the real world.</h2>
-            <p className="about__lead">You work directly with Mark—an automation specialist focused on making AI useful inside real businesses, not impressive in a demo.</p>
-            <p>Every system begins with your commercial goal and your team’s actual workflow. The result is automation people understand, trust and use.</p>
+            <p className="about__lead">You work directly with Mark, a CIMA-qualified finance systems and automation specialist focused on making AI useful inside real businesses, not impressive in a demo.</p>
+            <p>Every system begins with the commercial goal, the real workflow and the controls that matter. The result is practical automation and digital tools that people understand, trust and use.</p>
             <a className="text-link text-link--strong" href="mailto:mark@mhautomation.co.uk?subject=Let%27s%20talk%20automation">Talk directly with Mark <ArrowRight aria-hidden="true" /></a>
           </motion.div>
         </section>
@@ -359,8 +359,8 @@ function App() {
           <div className="final-cta__orbit" aria-hidden="true"><i /><i /><i /></div>
           <motion.div className="final-cta__inner" {...reveal}>
             <p className="eyebrow eyebrow--center"><span /> One useful conversation. No hard sell.</p>
-            <h2>Start with the work<br /><em>slowing your business down.</em></h2>
-            <p>Book a free automation review. We will identify the strongest opportunities, explain what is realistic and give you a clear next step.</p>
+            <h2>Start with the work<br /><em>taking too long.</em></h2>
+            <p>Book a free automation review. We will identify where controlled automation or a focused digital tool could create the most value, explain what is realistic and give you a clear next step.</p>
             <button className="button button--primary button--hero" type="button" onClick={openForm}>
               Book your free automation review <Mail aria-hidden="true" />
             </button>
@@ -371,7 +371,7 @@ function App() {
 
       <footer>
         <BrandMark light />
-        <p>AI automation systems for growing service businesses.</p>
+        <p>Controlled finance automation and practical digital systems for growing businesses.</p>
         <div><a href="#top">Back to top</a><span>© {new Date().getFullYear()} MH Automation</span></div>
       </footer>
 
@@ -412,7 +412,7 @@ function App() {
                 </button>
                 <p className="section-index">START A CONVERSATION</p>
                 <h2 id="enquiry-title">Tell me what is<br /><em>slowing you down.</em></h2>
-                <p className="enquiry-dialog__intro">A few details are enough. Online enquiries will open soon; until then, you can contact Mark directly using the email link below.</p>
+                <p className="enquiry-dialog__intro">A few details are enough. Tell me about the reporting, reconciliation, admin or digital tool taking too much time. Online enquiries will open soon; until then, contact Mark directly using the email link below.</p>
                 <form className="enquiry-form" onSubmit={(event) => event.preventDefault()}>
                   <div className="enquiry-form__row">
                     <label>

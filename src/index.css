@@ -137,7 +137,7 @@ button { color: inherit; font: inherit; }
 .button--light { margin-top: 25px; color: var(--ink); background: white; }
 .button--light:hover { transform: translateY(-2px); background: var(--aqua); }
 .proof-panel__numbers { border-top: 1px solid rgba(255,255,255,.18); }
-.proof-panel__numbers > div { padding: 35px 0; display: grid; grid-template-columns: 140px 1fr; align-items: center; border-bottom: 1px solid rgba(255,255,255,.18); }
+.proof-panel__numbers > div { padding: 35px 0; display: grid; grid-template-columns: 165px 1fr; gap: 18px; align-items: center; border-bottom: 1px solid rgba(255,255,255,.18); }
 .proof-panel__numbers strong { color: var(--aqua); font: 600 4.6rem/1 var(--font-display); letter-spacing: -.07em; }
 .proof-panel__numbers span { max-width: 180px; color: #b6c4c1; font-size: 13px; line-height: 1.5; }
 
@@ -279,7 +279,7 @@ footer > div { display: flex; flex-direction: column; align-items: flex-end; gap
   .proof-panel { min-height: auto; padding: 100px 22px; }
   .proof-panel h2 { font-size: 3.4rem; }
   .proof-panel__numbers { grid-template-columns: 1fr; }
-  .proof-panel__numbers > div { grid-template-columns: 110px 1fr; border-right: 0; }
+  .proof-panel__numbers > div { grid-template-columns: 125px 1fr; gap: 14px; border-right: 0; }
   .proof-panel__numbers strong { font-size: 3.5rem; }
   .process-step { padding: 28px 0; grid-template-columns: 42px 1fr; gap: 14px; }
   .process-step h3 { font-size: 1.75rem; }
